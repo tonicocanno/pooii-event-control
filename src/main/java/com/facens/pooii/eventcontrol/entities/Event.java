@@ -1,5 +1,6 @@
 package com.facens.pooii.eventcontrol.entities;
 
+import java.io.Serializable;
 import java.time.LocalTime;
 
 import javax.persistence.Entity;
@@ -10,21 +11,24 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="TB_EVENT")
-public class Event {
+public class Event implements Serializable{
+
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private long id;
+    private Long id;
     
     private String name;
     private String description;
     private String place;
     private LocalTime startDate;
     private LocalTime endDate;
-    private LocalTime starTime;
+    private LocalTime startTime;
     private LocalTime endTime;
     private String email;
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
     public void setId(long id) {
@@ -60,11 +64,11 @@ public class Event {
     public void setEndDate(LocalTime endDate) {
         this.endDate = endDate;
     }
-    public LocalTime getStarTime() {
-        return starTime;
+    public LocalTime getStartTime() {
+        return startTime;
     }
-    public void setStarTime(LocalTime starTime) {
-        this.starTime = starTime;
+    public void setStartTime(LocalTime starTime) {
+        this.startTime = starTime;
     }
     public LocalTime getEndTime() {
         return endTime;
@@ -77,6 +81,27 @@ public class Event {
     }
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + (int) (id ^ (id >>> 32));
+        return result;
+    }
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Event other = (Event) obj;
+        if (id != other.id)
+            return false;
+        return true;
     }
 
 }
