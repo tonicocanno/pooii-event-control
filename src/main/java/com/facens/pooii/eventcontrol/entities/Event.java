@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.facens.pooii.eventcontrol.DTO.EventInsertDTO;
+
 @Entity
 @Table(name="TB_EVENT")
 public class Event implements Serializable{
@@ -102,6 +104,20 @@ public class Event implements Serializable{
         if (id != other.id)
             return false;
         return true;
+    }
+
+    public Event() {
+    }
+
+    public Event(EventInsertDTO dto) {
+        this.name = dto.getName();
+        this.description = dto.getDescription();
+        this.place = dto.getPlace();
+        this.startDate = dto.getStartDate();
+        this.endDate = dto.getEndDate();
+        this.startTime = dto.getStartTime();
+        this.endTime = dto.getEndDate();
+        this.email = dto.getEmail();
     }
 
 }

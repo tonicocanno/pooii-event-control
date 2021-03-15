@@ -1,75 +1,47 @@
 package com.facens.pooii.eventcontrol.services;
 
-import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
+import com.facens.pooii.eventcontrol.DTO.EventInsertDTO;
 import com.facens.pooii.eventcontrol.entities.Event;
 import com.facens.pooii.eventcontrol.repositories.EventRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
+@Service
 public class EventService {
 
-    @Service
-    public class FuncionarioService {
+    @Autowired
+    private EventRepository eventRepository;
 
-        @Autowired
-        EventRepository eventRepository;
+    public List<Event> getAllEvents() {
+        List<Event> events = eventRepository.findAll();
+        return events;
+    }
 
-        public Event saveEvent(Event e) {
-            eventRepository.save(e);
-            return e;
+    public Event getEventById(Long id) {
+        Optional<Event> op = eventRepository.findById(id);
+        Event ev = op.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Event not found"));
+        return ev;
+    }
+
+    public Event insertEvent(EventInsertDTO dto) {
+        Event event = new Event(dto);
+        event = eventRepository.save(event);
+        return event;
+    }
+
+    public void deleteEvent(Long id) {
+        try{
+            eventRepository.deleteById(id);
         }
-
-        public List<Event> getAllEvents() {
-            return eventRepository.findAll();
-        }
-
-        public Event getEventById(Long id) {
-            for (Event e : eventRepository.findAll()) {
-                if (e.getId() == id) {
-                    return e;
-                }
-            }
-            return null;
-        }
-
-        public void deleteEvent(Event e) {
-            if (getEventById(e.getId()) != null) {
-                eventRepository.deleteById(e.getId());
-            }
-        }
-
-        public void deleteEventById(Long codigo) {
-            eventRepository.deleteById(codigo);
-        }
-
-        // AINDA SEM UTILIZAR DTO :: FAZER
-        public Event updateEvent(Event e) {
-
-            Event alterar = getEventById(e.getId());
-
-            if (alterar != null) {
-                alterar.setId(e.getId());
-                alterar.setName(e.getName());
-                alterar.setDescription(e.getDescription());
-                alterar.setPlace(e.getPlace());
-                alterar.setStartDate(e.getStartDate());
-                alterar.setEndDate(e.getEndDate());
-                alterar.setStartTime(e.getStartTime());
-                alterar.setEndTime(e.getEndTime());
-                alterar.setEmail(e.getEmail());
-                return alterar;
-            } else {
-                return null;
-            }
-        }
-
-        //////// TESTING////////
-        public void insereListaFunc() {
-            LocalDateTime time = LocalDateTime.now();
-            eventRepository.save(new Event());
+        catch(EmptyResultDataAccessException e){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Event not found");
         }
     }
 }
