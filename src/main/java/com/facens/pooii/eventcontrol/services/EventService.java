@@ -26,14 +26,32 @@ public class EventService {
 
     public Event getEventById(Long id) {
         Optional<Event> op = eventRepository.findById(id);
-        Event ev = op.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Event not found"));
-        return ev;
+        Event event = op.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Event not found"));
+        return event;
     }
 
     public Event insertEvent(EventInsertDTO dto) {
         Event event = new Event(dto);
         event = eventRepository.save(event);
         return event;
+    }
+
+    public Event updateEvent(Long id, EventInsertDTO dto) {
+        try {
+            Event event = eventRepository.getOne(id);
+            event.setName(dto.getName());
+            event.setDescription(dto.getDescription());
+            event.setPlace(dto.getPlace());
+            event.setStartDate(dto.getStartDate());
+            event.setEndDate(dto.getEndDate());
+            event.setStartTime(dto.getStartTime());
+            event.setEndTime(dto.getEndTime());
+            event.setEmail(dto.getEmail());
+            event = eventRepository.save(event);
+            return event;
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Client not found");
+        }
     }
 
     public void deleteEvent(Long id) {
