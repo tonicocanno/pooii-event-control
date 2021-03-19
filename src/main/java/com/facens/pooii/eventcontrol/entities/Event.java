@@ -12,13 +12,13 @@ import javax.persistence.Table;
 import com.facens.pooii.eventcontrol.DTO.EventInsertDTO;
 
 @Entity
-@Table(name="TB_EVENT")
+@Table(name="TB_Event")
 public class Event implements Serializable{
 
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
     
     private String name;

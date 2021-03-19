@@ -29,13 +29,13 @@ public class EventController {
     @GetMapping
     public ResponseEntity<List<Event>> getAllEvents() {
         List<Event> events = service.getAllEvents();
-        return ResponseEntity.ok(events);
+        return ResponseEntity.ok().body(events);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Event> getEventById(@PathVariable Long id) {
         Event event = service.getEventById(id);
-        return ResponseEntity.ok(event);
+        return ResponseEntity.ok().body(event);
     }
 
     @PostMapping
