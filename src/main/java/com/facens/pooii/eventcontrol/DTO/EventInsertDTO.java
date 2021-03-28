@@ -1,5 +1,6 @@
 package com.facens.pooii.eventcontrol.DTO;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class EventInsertDTO {
@@ -7,8 +8,8 @@ public class EventInsertDTO {
     private String name;
     private String description;
     private String place;
-    private LocalTime startDate;
-    private LocalTime endDate;
+    private LocalDate startDate;
+    private LocalDate endDate;
     private LocalTime startTime;
     private LocalTime endTime;
     private String email;
@@ -31,29 +32,29 @@ public class EventInsertDTO {
     public void setPlace(String place) {
         this.place = place;
     }
-    public LocalTime getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
-    public void setStartDate(LocalTime startDate) {
-        this.startDate = startDate;
+    public void setStartDate(String startDate) {
+        this.startDate = LocalDate.parse(startDate);
     }
-    public LocalTime getEndDate() {
+    public LocalDate getEndDate() {
         return endDate;
     }
-    public void setEndDate(LocalTime endDate) {
-        this.endDate = endDate;
+    public void setEndDate(String endDate) {
+        this.endDate = LocalDate.parse(endDate);
     }
     public LocalTime getStartTime() {
         return startTime;
     }
-    public void setStartTime(LocalTime startTime) {
-        this.startTime = startTime;
+    public void setStartTime(String startTime) {
+        this.startTime = LocalTime.parse(startTime);
     }
     public LocalTime getEndTime() {
         return endTime;
     }
-    public void setEndTime(LocalTime endTime) {
-        this.endTime = endTime;
+    public void setEndTime(String endTime) {
+        this.endTime = LocalTime.parse(endTime);
     }
     public String getEmail() {
         return email;

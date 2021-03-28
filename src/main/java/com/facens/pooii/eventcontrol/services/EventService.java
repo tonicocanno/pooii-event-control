@@ -9,6 +9,8 @@ import com.facens.pooii.eventcontrol.repositories.EventRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -19,8 +21,9 @@ public class EventService {
     @Autowired
     private EventRepository eventRepository;
 
-    public List<Event> getAllEvents() {
-        return eventRepository.findAll();
+    public Page<Event> getAllEvents(PageRequest pageRequest, String name, String place) {
+        return eventRepository.find(pageRequest, name, place);
+        // return list.map( event -> new Event(event));
     }
 
     public Event getEventById(Long id) {
@@ -32,6 +35,8 @@ public class EventService {
     public Event insertEvent(EventInsertDTO dto) {
         Event event = new Event(dto);
         event = eventRepository.save(event);
+        // em.getTransaction().begin();
+        // em.getTransaction().commit();
         return event;
     }
 

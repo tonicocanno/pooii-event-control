@@ -1,6 +1,7 @@
 package com.facens.pooii.eventcontrol.entities;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.time.LocalTime;
 
 import javax.persistence.Entity;
@@ -24,8 +25,8 @@ public class Event implements Serializable{
     private String name;
     private String description;
     private String place;
-    private LocalTime startDate;
-    private LocalTime endDate;
+    private LocalDate startDate;
+    private LocalDate endDate;
     private LocalTime startTime;
     private LocalTime endTime;
     private String email;
@@ -54,16 +55,16 @@ public class Event implements Serializable{
     public void setPlace(String place) {
         this.place = place;
     }
-    public LocalTime getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
-    public void setStartDate(LocalTime startDate) {
+    public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
     }
-    public LocalTime getEndDate() {
+    public LocalDate getEndDate() {
         return endDate;
     }
-    public void setEndDate(LocalTime endDate) {
+    public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
     public LocalTime getStartTime() {
@@ -116,7 +117,7 @@ public class Event implements Serializable{
         this.startDate = dto.getStartDate();
         this.endDate = dto.getEndDate();
         this.startTime = dto.getStartTime();
-        this.endTime = dto.getEndDate();
+        this.endTime = dto.getEndTime();
         this.email = dto.getEmail();
     }
 
