@@ -1,6 +1,5 @@
 package com.facens.pooii.eventcontrol.services;
 
-import java.util.List;
 import java.util.Optional;
 
 import com.facens.pooii.eventcontrol.DTO.EventInsertDTO;
@@ -21,8 +20,8 @@ public class EventService {
     @Autowired
     private EventRepository eventRepository;
 
-    public Page<Event> getAllEvents(PageRequest pageRequest, String name, String place) {
-        return eventRepository.find(pageRequest, name, place);
+    public Page<Event> getAllEvents(PageRequest pageRequest, String name, String place, String start_date) {
+        return eventRepository.find(pageRequest, name, place, start_date);
         // return list.map( event -> new Event(event));
     }
 
@@ -35,8 +34,6 @@ public class EventService {
     public Event insertEvent(EventInsertDTO dto) {
         Event event = new Event(dto);
         event = eventRepository.save(event);
-        // em.getTransaction().begin();
-        // em.getTransaction().commit();
         return event;
     }
 
@@ -59,10 +56,9 @@ public class EventService {
     }
 
     public void deleteEvent(Long id) {
-        try{
+        try {
             eventRepository.deleteById(id);
-        }
-        catch(EmptyResultDataAccessException e){
+        } catch (EmptyResultDataAccessException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Event not found");
         }
     }
