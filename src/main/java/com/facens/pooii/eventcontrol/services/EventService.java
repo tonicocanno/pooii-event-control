@@ -20,8 +20,8 @@ public class EventService {
     @Autowired
     private EventRepository eventRepository;
 
-    public Page<Event> getAllEvents(PageRequest pageRequest, String name, String place, String start_date) {
-        return eventRepository.find(pageRequest, name, place, start_date);
+    public Page<Event> getAllEvents(PageRequest pageRequest, String name, String place, String start_date, String description) {
+        return eventRepository.find(pageRequest, name, place, start_date, description);
         // return list.map( event -> new Event(event));
     }
 

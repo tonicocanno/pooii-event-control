@@ -20,8 +20,9 @@ public interface EventRepository extends JpaRepository <Event, Long> {
     @Query(value = " select * from tb_event where " + 
                    " upper(name) like upper(CONCAT('%', :name,  '%')) and " +
                    " upper(place) like upper(CONCAT('%', :place, '%')) and " +
+                   " upper(description) like upper(CONCAT('%', :description, '%')) and " +
                    " CAST(start_date AS VARCHAR) like CONCAT('%', :start_date, '%')", nativeQuery = true
     )
 
-    public Page<Event> find(Pageable pageRequest, String name, String place, String start_date);
+    public Page<Event> find(Pageable pageRequest, String name, String place, String start_date, String description);
 }
