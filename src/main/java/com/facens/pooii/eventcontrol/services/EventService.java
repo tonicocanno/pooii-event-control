@@ -1,5 +1,6 @@
 package com.facens.pooii.eventcontrol.services;
 
+import java.time.LocalDate;
 import java.util.Optional;
 
 import com.facens.pooii.eventcontrol.DTO.EventInsertDTO;
@@ -20,8 +21,8 @@ public class EventService {
     @Autowired
     private EventRepository eventRepository;
 
-    public Page<Event> getAllEvents(PageRequest pageRequest, String name, String place, String start_date, String description) {
-        return eventRepository.find(pageRequest, name, place, start_date, description);
+    public Page<Event> getAllEvents(PageRequest pageRequest, String name, String place, String startDate, String description) {
+        return eventRepository.find(pageRequest, name, place, LocalDate.parse(startDate), description);
         // return list.map( event -> new Event(event));
     }
 

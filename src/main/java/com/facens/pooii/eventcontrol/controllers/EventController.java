@@ -1,6 +1,7 @@
 package com.facens.pooii.eventcontrol.controllers;
 
 import java.net.URI;
+import java.time.LocalDate;
 
 import com.facens.pooii.eventcontrol.DTO.EventInsertDTO;
 import com.facens.pooii.eventcontrol.entities.Event;
@@ -36,12 +37,12 @@ public class EventController {
             @RequestParam(value = "orderBy", defaultValue = "id") String orderBy,
             @RequestParam(value = "name", defaultValue = "") String name,
             @RequestParam(value = "place", defaultValue = "") String place,
-            @RequestParam(value = "start_date", defaultValue = "") String start_date,
+            @RequestParam(value = "startDate", defaultValue = "0000-01-01") String startDate,
             @RequestParam(value = "description", defaultValue = "") String description
 
     ) {
         PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
-        Page<Event> events = service.getAllEvents(pageRequest, name, place, start_date, description);
+        Page<Event> events = service.getAllEvents(pageRequest, name, place, startDate, description);
         return ResponseEntity.ok().body(events);
     }
 

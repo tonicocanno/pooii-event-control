@@ -1,13 +1,5 @@
-INSERT INTO tb_event (name, description, place, startDate, endDate, startTime, endTime, email) 
-VALUES (
-    'Start-Up de Tecnologia', 
-    'Palestra inovadoura onde será abordado uma diversidade de temas relacionados a tecnologia do momento. Tudo do mais novo e melhor no mundo dos Softwares e Hardwares.', 
-    'Casa do seu Zé',
-    '2022-12-30',
-    '2023-01-01',
-    '18:30:00',
-    '21:00:00',
-    'suporte@devevo.com.br'
-    )
+INSERT INTO tb_event (name, description, place, start_date, end_date, start_time, end_time, email) VALUES ( 'Start-Up de Tecnologia', 'Palestra inovadoura onde será abordado uma diversidade de temas relacionados a tecnologia do momento. Tudo do mais novo e melhor no mundo dos Softwares e Hardwares.', 'Casa do seu Zé', '2022-12-30', '2023-01-01', '18:30:00', '21:00:00', 'suporte@devevo.com.br' )
 
-    -- postgres://wpnhcssgwicfdg:cc1efaf65041cb5f01b4730fe225cb841cdbb2416f904b754820ac6dfd6e2b74@ec2-3-91-127-228.compute-1.amazonaws.com:5432/dakpb4704pekri
+INSERT INTO tb_event (name, description, place, start_date, end_date, start_time, end_time, email) VALUES ( 'Encontro de toda a torcida santista', 'O eveto mais esperado do ano, por um total de 8 pessoas, já é realidade.', 'Apartamento do Edivaldo', '2023-02-05', '2023-02-05', '13:00:00', '18:00:00', 'caiu@navila.com' )
+
+INSERT INTO tb_event (name, description, place, start_date, end_date, start_time, end_time, email) VALUES ( 'Compeonado mundial de caçar tatu', 'O maior compeonado de caça aos tatus está cheio de novidades. Tatus acima de 1,5kg valem 5 pontos na escala tatuball.', 'Morro do cabeludo', '2023-05-25', '2023-05-25', '13:00:00', '18:00:00', 'contato@tatudomangue.com' ) -- postgres://wpnhcssgwicfdg:cc1efaf65041cb5f01b4730fe225cb841cdbb2416f904b754820ac6dfd6e2b74@ec2-3-91-127-228.compute-1.amazonaws.com:5432/dakpb4704pekri
